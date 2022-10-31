@@ -10,7 +10,7 @@
     <?php require_once server_root . 'src/dependencies/dependencias.php'; ?>
 
     <!-- JS - jQuery - AJAX -->
-    <script src="<?php echo web_root; ?>public/javascripts/cliente.js"></script>
+    <script src="<?php echo web_root; ?>public/javascripts/cliente2.js"></script>
 
     <title>Administrar Clientes</title>
 </head>
@@ -20,15 +20,6 @@
     <input type="button" value="Atras" onclick="historyBack()">
     <input type="button" id="btnRead" value="Listar">
     <input type="button" id="btnCreateModal" value="Añadir">
-    <select name="" id="filterOptions">
-        <option value="">Ordenar por</option>
-        <option value="">id</option>
-        <option value="">codigo</option>
-        <option value="">nombre</option>
-    </select>
-    <!-- BUSCAR -->
-    <input type="search" id="txtbuscar" placeholder="Buscar">
-    <input type="button" id="btnSearch" value="Buscar">
 
     <!-- VOLVER -->
 
@@ -50,9 +41,6 @@
                     <th width="10%" scope="col" colspan="2">Acciones</th>
                 </tr>
             </thead>
-            <tbody id="tabla">
-
-            </tbody>
         </table>
     </div>
 </body>

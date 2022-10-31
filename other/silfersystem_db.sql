@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS servicio(
 );
 
 -- REGISTRO
-CREATE TABLE IF NOT EXISTS registro(
+CREATE TABLE IF NOT EXISTS s_registro(
     idRegistro INT PRIMARY KEY AUTO_INCREMENT,
     fecha DATE NOT NULL,
     fec_buena_pro DATE,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS registro(
 );
 
 -- ORDEN
-CREATE TABLE IF NOT EXISTS orden(
+CREATE TABLE IF NOT EXISTS s_orden(
     idOrden INT PRIMARY KEY AUTO_INCREMENT,
     numero VARCHAR(50) NOT NULL,
     fec_emision DATE NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS orden(
 );
 
 -- CONTRATO
-CREATE TABLE IF NOT EXISTS contrato(
+CREATE TABLE IF NOT EXISTS s_contrato(
     idContrato INT PRIMARY KEY AUTO_INCREMENT,
     numero VARCHAR(50) NOT NULL,
     fec_ejecucion DATE,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS contrato(
 );
 
 -- ENTREGABLE
-CREATE TABLE IF NOT EXISTS entregable(
+CREATE TABLE IF NOT EXISTS s_entregable(
     idEntregable INT PRIMARY KEY AUTO_INCREMENT,
     fec_maxima DATE,
     fec_entrega DATE,
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS entregable(
 );
 
 -- CONFORMIDAD
-CREATE TABLE IF NOT EXISTS conformidad(
+CREATE TABLE IF NOT EXISTS s_conformidad(
     idConformidad INT PRIMARY KEY AUTO_INCREMENT,
     fecha DATE,
     link VARCHAR(512),
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS conformidad(
 );
 
 -- FACTURA
-CREATE TABLE IF NOT EXISTS factura(
+CREATE TABLE IF NOT EXISTS s_factura(
     idFactura INT PRIMARY KEY AUTO_INCREMENT,
     numero VARCHAR (50) NOT NULL,
     monto DOUBLE,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS factura(
 );
 
 -- DEPOSITO
-CREATE TABLE IF NOT EXISTS deposito(
+CREATE TABLE IF NOT EXISTS s_deposito(
     idDeposito INT PRIMARY KEY AUTO_INCREMENT,
     monto DOUBLE,
     moneda ENUM('S','D','ND'),
@@ -105,12 +105,3 @@ CREATE TABLE IF NOT EXISTS deposito(
     idFactura INT,
     CONSTRAINT FK_deposito_idFactura FOREIGN KEY (idFactura) REFERENCES factura(idFactura)
 )
-
-
-
-
-
-
-
-
-

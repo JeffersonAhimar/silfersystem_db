@@ -24,6 +24,8 @@ $(document).ready(function () {
         Read();
     });
 
+    // $('#tblData').DataTable();
+
 
     // MODAL - AÑADIR
     $("#btnCreateModal").click(function () {
@@ -50,6 +52,11 @@ $(document).ready(function () {
             Update();
             setTimeout(Read, delay);
         }
+    });
+
+    // BUSCAR 
+    $("#btnSearch").click(function () {
+        Search();
     });
 });
 
@@ -83,6 +90,7 @@ $(document).on('click', '#btnDeleteModal', function () {
     document.getElementById("txtdel").value = var1;
     $('#deleteModal').modal('show');
 });
+// EJECUTAR BOTON ELIMINAR
 $(document).on('click', '#btnDelete', function () {
     Delete();
     setTimeout(Read, delay);
@@ -97,6 +105,25 @@ function Read() {
             op: '1'
         },
         success: function (result) {
+            $("#tabla").html(result);
+        }
+    });
+}
+
+
+// AJAX - BUSCAR
+function Search() {
+    var search = $("#txtbuscar").val();
+    $.ajax({
+        type: type,
+        url: url,
+        data: {
+            op: '2',
+            search: search,
+            tblName: tblName
+        },
+        success: function (result) {
+            document.getElementById("txtbuscar").value = "";
             $("#tabla").html(result);
         }
     });

@@ -20,3 +20,6 @@
 <!-- CSS -->
 <link rel="stylesheet" href="<?php echo web_root; ?>public/stylesheets/style.css">
 
+<!-- DataTables -->
+<link rel="stylesheet" href="<?php echo web_root; ?>public/plugins/DataTables/datatables.min.css">
+<script src="<?php echo web_root; ?>public/plugins/DataTables/datatables.min.js"></script>

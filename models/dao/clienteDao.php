@@ -136,6 +136,9 @@ class clienteDao
             $db = new Database();
             $con = $db->conectar();
             $tabla = "";
+            // 
+
+            // 
             $i = 1;
             foreach ($con->query($sql_text) as $row) {
                 $tabla .= "<tr>";
@@ -165,6 +168,9 @@ class clienteDao
                 $tabla .= "</tr>";
                 $i++;
             }
+            // 
+
+            // 
         } catch (Exception $ex) {
         }
         return $tabla;
