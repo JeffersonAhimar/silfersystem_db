@@ -13,12 +13,12 @@
     <script src="<?php echo web_root; ?>public/javascripts/cliente2.js"></script>
 
     <title>Administrar Clientes</title>
-    <style>
+    <!-- <style>
         button.dt-button.btn-primary {
             background: var(--bs-primary) !important;
             color: white;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>

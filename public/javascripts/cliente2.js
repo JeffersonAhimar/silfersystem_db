@@ -1,3 +1,7 @@
+// VARIABLES CONSTANTES
+const URL = "../../controllers/clienteController.php";
+const TYPE = "POST";
+
 var tblData = '';
 $(function () {
     // draw function [called if the database updates]
@@ -17,8 +21,11 @@ $(function () {
             "processing": true,
             "serverSide": true,
             "ajax": {
-                url: "../../models/dao/clienteDao2.php",
-                method: 'POST'
+                url: URL,
+                type: TYPE,
+                data: {
+                    op: '2'
+                },
             },
             // COLUMNAS
             columns: [
@@ -46,10 +53,10 @@ $(function () {
                         console.log()
                         let link_btn = '';
                         if (row.link == '') {
-                            link_btn += '<a class="me-2 btn btn-sm rounded-0 py-0 btn-secondary disabled" href="#" target="_blank">No</a>';
+                            link_btn += '<a class="me-2 btn btn-sm py-0 btn-secondary disabled" href="#" target="_blank">No</a>';
                         }
                         else {
-                            link_btn += '<a class="me-2 btn btn-sm rounded-0 py-0 btn-secondary" href="' + (row.link) + '" target="_blank">Sí</a>';
+                            link_btn += '<a class="me-2 btn btn-sm py-0 btn-secondary" href="' + (row.link) + '" target="_blank">Sí</a>';
                         }
                         return link_btn;
                     }
@@ -61,8 +68,8 @@ $(function () {
                     render: function (data, type, row, meta) {
                         console.log()
                         let extra_btns = '';
-                        extra_btns += '<a class="me-2 btn btn-sm rounded-0 py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Editar</a>';
-                        extra_btns += '<a class="btn btn-sm rounded-0 py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Eliminar</a>';
+                        extra_btns += '<a class="me-2 btn btn-sm py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Editar</a>';
+                        extra_btns += '<a class="btn btn-sm py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Eliminar</a>';
                         return extra_btns;
                     }
                 }
@@ -71,9 +78,12 @@ $(function () {
             drawCallback: function (settings) {
                 $('.edit_data').click(function () {
                     $.ajax({
-                        url: '../../models/dao/get_single.php',
-                        data: { idCliente: $(this).attr('data-id') },
-                        method: 'POST',
+                        url: URL,
+                        type: TYPE,
+                        data: {
+                            op: '5',
+                            idCliente: $(this).attr('data-id')
+                        },
                         dataType: 'json',
                         error: err => {
                             alert("Ocurrió un error al obtener datos únicos")
@@ -93,9 +103,12 @@ $(function () {
                 })
                 $('.delete_data').click(function () {
                     $.ajax({
-                        url: '../../models/dao/get_single.php',
-                        data: { id: $(this).attr('data-id') },
-                        method: 'POST',
+                        url: URL,
+                        type: TYPE,
+                        data: {
+                            op: '5',
+                            idCliente: $(this).attr('data-id')
+                        },
                         dataType: 'json',
                         error: err => {
                             alert("Ocurrió un error al obtener datos únicos")
@@ -116,7 +129,7 @@ $(function () {
                 [
                     {
                         text: "Agregar Nuevo",
-                        className: "btn btn-primary py-0",
+                        className: "buttons-create buttons-html5",
                         action: function (e, dt, node, config) {
                             $('#add_modal').modal('show')
                         }
