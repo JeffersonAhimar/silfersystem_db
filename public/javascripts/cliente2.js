@@ -1,58 +1,78 @@
-var authorsTbl = '';
+var tblData = '';
 $(function () {
     // draw function [called if the database updates]
     function draw_data() {
-        if ($.fn.dataTable.isDataTable('#authors-tbl') && authorsTbl != '') {
-            authorsTbl.draw(true)
+        if ($.fn.dataTable.isDataTable('#tblData') && tblData != '') {
+            tblData.draw(true)
         } else {
             load_data();
         }
     }
 
+    // FUNCION PARA CARGAR DATA
     function load_data() {
-        authorsTbl = $('#authors-tbl').DataTable({
+        tblData = $('#tblData').DataTable({
             dom: '<"row"B>flr<"py-2 my-2"t>ip',
+            // dom: 'Bflrtip',
             "processing": true,
             "serverSide": true,
             "ajax": {
-                url: "./get_authors.php",
+                url: "../../models/dao/clienteDao2.php",
                 method: 'POST'
             },
-            columns: [{
-                data: 'id',
-                className: 'py-0 px-1'
-            },
-            {
-                data: 'first_name',
-                className: 'py-0 px-1'
-            },
-            {
-                data: 'last_name',
-                className: 'py-0 px-1'
-            },
-            {
-                data: 'email',
-                className: 'py-0 px-1'
-            },
-            {
-                data: 'birthdate',
-                className: 'py-0 px-1'
-            },
-            {
-                data: null,
-                orderable: false,
-                className: 'text-center py-0 px-1',
-                render: function (data, type, row, meta) {
-                    console.log()
-                    return '<a class="me-2 btn btn-sm rounded-0 py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.id) + '">Editar</a><a class="btn btn-sm rounded-0 py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.id) + '">Eliminar</a>';
+            // COLUMNAS
+            columns: [
+                {
+                    data: 'idCliente',
+                    className: 'py-0 px-1'
+                },
+                {
+                    data: 'codigo',
+                    className: 'py-0 px-1'
+                },
+                {
+                    data: 'nombre',
+                    className: 'py-0 px-1'
+                },
+                {
+                    data: 'ruc',
+                    className: 'py-0 px-1'
+                },
+                {
+                    data: null,
+                    orderable: false,
+                    className: 'text-center py-0 px-1',
+                    render: function (data, type, row, meta) {
+                        console.log()
+                        let link_btn = '';
+                        if (row.link == '') {
+                            link_btn += '<a class="me-2 btn btn-sm rounded-0 py-0 btn-secondary disabled" href="#" target="_blank">No</a>';
+                        }
+                        else {
+                            link_btn += '<a class="me-2 btn btn-sm rounded-0 py-0 btn-secondary" href="' + (row.link) + '" target="_blank">Sí</a>';
+                        }
+                        return link_btn;
+                    }
+                },
+                {
+                    data: null,
+                    orderable: false,
+                    className: 'text-center py-0 px-1',
+                    render: function (data, type, row, meta) {
+                        console.log()
+                        let extra_btns = '';
+                        extra_btns += '<a class="me-2 btn btn-sm rounded-0 py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Editar</a>';
+                        extra_btns += '<a class="btn btn-sm rounded-0 py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Eliminar</a>';
+                        return extra_btns;
+                    }
                 }
-            }
             ],
+            // FUNCIONES
             drawCallback: function (settings) {
                 $('.edit_data').click(function () {
                     $.ajax({
-                        url: 'get_single.php',
-                        data: { id: $(this).attr('data-id') },
+                        url: '../../models/dao/get_single.php',
+                        data: { idCliente: $(this).attr('data-id') },
                         method: 'POST',
                         dataType: 'json',
                         error: err => {
@@ -73,7 +93,7 @@ $(function () {
                 })
                 $('.delete_data').click(function () {
                     $.ajax({
-                        url: 'get_single.php',
+                        url: '../../models/dao/get_single.php',
                         data: { id: $(this).attr('data-id') },
                         method: 'POST',
                         dataType: 'json',
@@ -91,24 +111,38 @@ $(function () {
                     })
                 })
             },
-            buttons: [{
-                text: "Agregar Nuevo",
-                className: "btn btn-primary py-0",
-                action: function (e, dt, node, config) {
-                    $('#add_modal').modal('show')
-                }
-            }],
-            "order": [
-                [1, "asc"]
-            ],
+            // BOTONES EXTRA
+            buttons:
+                [
+                    {
+                        text: "Agregar Nuevo",
+                        className: "btn btn-primary py-0",
+                        action: function (e, dt, node, config) {
+                            $('#add_modal').modal('show')
+                        }
+                    },
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+            // MODO DE ORDENAMIENTO
+            "order":
+                [
+                    [0, "asc"]
+                ],
             initComplete: function (settings) {
                 $('.paginate_button').addClass('p-1')
             }
         });
     }
-    //Load Data
+
+
+
+
+
+    // READ DATA
     load_data()
-    //Saving new Data
+    // CREATE DATA
     $('#new-author-frm').submit(function (e) {
         e.preventDefault()
         $('#add_modal button').attr('disabled', true)
@@ -156,7 +190,7 @@ $(function () {
             }
         })
     })
-    // Update Data
+    // UPDATE DATA
     $('#edit-author-frm').submit(function (e) {
         e.preventDefault()
         $('#edit_modal button').attr('disabled', true)
@@ -204,7 +238,7 @@ $(function () {
             }
         })
     })
-    // DELETE Data
+    // DELETE DATA
     $('#delete-author-frm').submit(function (e) {
         e.preventDefault()
         $('#delete_modal button').attr('disabled', true)
