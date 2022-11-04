@@ -20,17 +20,19 @@
 <!-- CSS -->
 <link rel="stylesheet" href="<?php echo web_root; ?>public/stylesheets/style.css">
 
+
 <!-- DataTables -->
-<link rel="stylesheet" href="<?php echo web_root; ?>public/plugins/DataTables/datatables.min.css">
-<script src="<?php echo web_root; ?>public/plugins/DataTables/datatables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/css/buttons.bootstrap5.min.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/css/responsive.bootstrap5.min.css" />
 
-<!-- DataTables - Buttons-->
-<link rel="stylesheet" href="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/css/buttons.dataTables.min.css">
-<script src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/dataTables.buttons.min.js"></script>
-
-<!-- HTML5 Export -->
-<script src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.html5.min.js"></script>
-<script src="<?php echo web_root; ?>public/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script src="<?php echo web_root; ?>public/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="<?php echo web_root; ?>public/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
-
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/DataTables-1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.bootstrap5.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/js/responsive.bootstrap5.js"></script>

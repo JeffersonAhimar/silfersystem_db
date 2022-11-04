@@ -3,7 +3,7 @@ require_once '../src/util/config.php';
 
 require_once server_root . 'src/util/database.php';
 
-$tblName = 'cliente';
+$tblName = 'servicio';
 
 extract($_POST);
 if (!empty($_POST['op'])) {
@@ -19,8 +19,8 @@ switch ($op) {
     case 1: {
             $db = new Database();
             $con = $db->conectar();
-            $create = $con->prepare("INSERT INTO $tblName (`codigo`,`nombre`,`ruc`,`link`) VALUES (?,?,?,?)");
-            $create->execute([$codigo, $nombre, $ruc, $link]);
+            $create = $con->prepare("INSERT INTO $tblName (`codigo`,`descripcion`,`bases`,`moneda`,`monto`,`fecha`,`link`,`idCliente`) VALUES (?,?,?,?,?,?,?,?)");
+            $create->execute([$codigo, $descripcion, $bases, $moneda, $monto, $fecha, $link, $idCliente]);
             if ($create) {
                 $resp['status'] = 'success';
             } else {
@@ -45,17 +45,25 @@ switch ($op) {
                 if (!empty($search)) {
                     $search_where = " WHERE ";
                     $search_where .= " codigo LIKE '%{$search['value']}%' ";
-                    $search_where .= " OR nombre LIKE '%{$search['value']}%' ";
-                    $search_where .= " OR ruc LIKE '%{$search['value']}%' ";
+                    $search_where .= " OR descripcion LIKE '%{$search['value']}%' ";
+                    $search_where .= " OR bases LIKE '%{$search['value']}%' ";
+                    $search_where .= " OR moneda LIKE '%{$search['value']}%' ";
+                    $search_where .= " OR monto LIKE '%{$search['value']}%' ";
+                    $search_where .= " OR date_format(fecha,'%M %d, %Y') LIKE '%{$search['value']}%' ";
                     $search_where .= " OR link LIKE '%{$search['value']}%' ";
+                    $search_where .= " OR idCliente LIKE '%{$search['value']}%' ";
                 }
                 // NOMBRES DE COLUMNAS
                 $columns_arr = array(
-                    "idCliente",
+                    "idServicio",
                     "codigo",
-                    "nombre",
-                    "ruc",
-                    "link"
+                    "descripcion",
+                    "bases",
+                    "moneda",
+                    "monto",
+                    "unix_timestamp(fecha)",
+                    "link",
+                    "idCliente"
                 );
                 // OBTENER TODOS 
                 $query = $con->prepare("SELECT * FROM $tblName {$search_where} ORDER BY {$columns_arr[$order[0]['column']]} {$order[0]['dir']} limit {$length} offset {$start} ");
@@ -72,6 +80,7 @@ switch ($op) {
                 $i = 1 + $start;
                 while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                     $row['no'] = $i++;
+                    $row['fecha'] = date("F d, Y", strtotime($row['fecha']));
                     $data[] = $row;
                 }
                 // DEVOLVIENDO DATA
@@ -93,8 +102,8 @@ switch ($op) {
     case 3: {
             $db = new Database();
             $con = $db->conectar();
-            $update = $con->prepare("UPDATE $tblName SET `codigo` = ?, `nombre` = ?, `ruc` = ?,`link` = ? WHERE idCliente = ?");
-            $update->execute([$codigo, $nombre, $ruc, $link, $idCliente]);
+            $update = $con->prepare("UPDATE $tblName SET `codigo` = ?, `descripcion` = ?, `bases` = ?, `moneda` = ?, `monto` = ?, `fecha` = ?, `link` = ?, `idCliente` = ? WHERE idServicio = ?");
+            $update->execute([$codigo, $descripcion, $bases, $moneda, $monto, $fecha, $link, $idCliente, $idServicio]);
             if ($update) {
                 $resp['status'] = 'success';
             } else {
@@ -109,8 +118,8 @@ switch ($op) {
     case 4: {
             $db = new Database();
             $con = $db->conectar();
-            $delete = $con->prepare("DELETE FROM $tblName WHERE idCliente = ?");
-            $delete->execute([$idCliente]);
+            $delete = $con->prepare("DELETE FROM $tblName WHERE idServicio = ?");
+            $delete->execute([$idServicio]);
             if ($delete) {
                 $resp['status'] = 'success';
             } else {
@@ -126,8 +135,8 @@ switch ($op) {
             try {
                 $db = new Database();
                 $con = $db->conectar();
-                $query = $con->prepare("SELECT * FROM $tblName where idCliente = ?");
-                $query->execute([$idCliente]);
+                $query = $con->prepare("SELECT * FROM $tblName WHERE idServicio = ?");
+                $query->execute([$idServicio]);
                 if ($query) {
                     $resp['status'] = 'success';
                     $resp['data'] = $query->fetch(PDO::FETCH_ASSOC);

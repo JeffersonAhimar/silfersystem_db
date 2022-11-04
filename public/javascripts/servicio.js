@@ -1,8 +1,10 @@
 // VARIABLES CONSTANTES
-const URL = "../../controllers/clienteController.php";
+const URL = "../../controllers/servicioController.php";
 const TYPE = "POST";
 
-var tblData = '';
+let tblData = '';
+let mensaje_error_single_data = 'Ocurrió un error al obtener datos únicos';
+let mensaje_error = 'Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo';
 $(function () {
     // draw function [called if the database updates]
     function draw_data() {
@@ -16,7 +18,8 @@ $(function () {
     // FUNCION PARA CARGAR DATA
     function load_data() {
         tblData = $('#tblData').DataTable({
-            dom: '<"row"B>flr<"py-2 my-2"t>ip',
+            responsive: true,
+            dom: 'Bflr<"py-2 my-2"t>ip',
             // dom: 'Bflrtip',
             "processing": true,
             "serverSide": true,
@@ -30,7 +33,7 @@ $(function () {
             // COLUMNAS
             columns: [
                 {
-                    data: 'idCliente',
+                    data: 'idServicio',
                     className: 'py-0 px-1'
                 },
                 {
@@ -38,11 +41,50 @@ $(function () {
                     className: 'py-0 px-1'
                 },
                 {
-                    data: 'nombre',
+                    data: 'descripcion',
                     className: 'py-0 px-1'
                 },
                 {
-                    data: 'ruc',
+                    data: null,
+                    orderable: false,
+                    className: 'text-center py-0 px-1',
+                    render: function (data, type, row, meta) {
+                        console.log()
+                        let link_btn = '';
+                        if (row.bases == '') {
+                            link_btn += '<a class="me-2 btn btn-sm py-0 btn-secondary disabled" href="#">No</a>';
+                        }
+                        else {
+                            link_btn += '<a class="me-2 btn btn-sm py-0 btn-secondary" href="' + (row.bases) + '" target="_blank">Sí</a>';
+                        }
+                        return link_btn;
+                    }
+                },
+                {
+                    data: null,
+                    orderable: true,
+                    className: 'py-0 px-1',
+                    render: function (data, type, row, meta) {
+                        console.log()
+                        let format_moneda = '';
+                        if (row.moneda == 'S') {
+                            format_moneda += 'S/ ';
+                        }
+                        else if (row.moneda == 'D') {
+                            format_moneda += '$ ';
+                        }
+                        else {
+                            format_moneda += 'ND ';
+                        }
+                        return format_moneda;
+                    }
+                },
+                {
+                    data: 'monto',
+                    className: 'py-0 px-1'
+                },
+                {
+                    data: 'fecha',
                     className: 'py-0 px-1'
                 },
                 {
@@ -53,7 +95,7 @@ $(function () {
                         console.log()
                         let link_btn = '';
                         if (row.link == '') {
-                            link_btn += '<a class="me-2 btn btn-sm py-0 btn-secondary disabled" href="#" target="_blank">No</a>';
+                            link_btn += '<a class="me-2 btn btn-sm py-0 btn-secondary disabled" href="#">No</a>';
                         }
                         else {
                             link_btn += '<a class="me-2 btn btn-sm py-0 btn-secondary" href="' + (row.link) + '" target="_blank">Sí</a>';
@@ -62,14 +104,18 @@ $(function () {
                     }
                 },
                 {
+                    data: 'idCliente',
+                    className: 'py-0 px-1'
+                },
+                {
                     data: null,
                     orderable: false,
                     className: 'text-center py-0 px-1',
                     render: function (data, type, row, meta) {
                         console.log()
                         let extra_btns = '';
-                        extra_btns += '<a class="me-2 btn btn-sm py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Editar</a>';
-                        extra_btns += '<a class="btn btn-sm py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.idCliente) + '">Eliminar</a>';
+                        extra_btns += '<a class="me-2 btn btn-sm py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.idServicio) + '">Editar</a>';
+                        extra_btns += '<a class="btn btn-sm py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.idServicio) + '">Eliminar</a>';
                         return extra_btns;
                     }
                 }
@@ -82,21 +128,26 @@ $(function () {
                         type: TYPE,
                         data: {
                             op: '5',
-                            idCliente: $(this).attr('data-id')
+                            idServicio: $(this).attr('data-id')
                         },
                         dataType: 'json',
                         error: err => {
-                            alert("Ocurrió un error al obtener datos únicos")
+                            alertify.error('Error, revisar consola');
+                            console.log(err);
                         },
                         success: function (resp) {
                             if (!!resp.status) {
                                 Object.keys(resp.data).map(k => {
-                                    if ($('#edit_modal').find('input[name="' + k + '"]').length > 0)
+                                    if ($('#edit_modal').find('input[name="' + k + '"]').length > 0) {
                                         $('#edit_modal').find('input[name="' + k + '"]').val(resp.data[k])
+                                    }
+                                    else if ($('#edit_modal').find('select[name="' + k + '"]').length > 0) {
+                                        $('#edit_modal').find('select[name="' + k + '"]').val(resp.data[k])
+                                    }
                                 })
                                 $('#edit_modal').modal('show')
                             } else {
-                                alert("Ocurrió un error al obtener datos únicos")
+                                alertify.error(mensaje_error_single_data);
                             }
                         }
                     })
@@ -107,18 +158,20 @@ $(function () {
                         type: TYPE,
                         data: {
                             op: '5',
-                            idCliente: $(this).attr('data-id')
+                            idServicio: $(this).attr('data-id')
                         },
                         dataType: 'json',
                         error: err => {
-                            alert("Ocurrió un error al obtener datos únicos")
+                            alertify.error('Error, revisar consola');
+                            console.log(err);
                         },
                         success: function (resp) {
                             if (!!resp.status) {
-                                $('#delete_modal').find('input[name="id"]').val(resp.data['id'])
+                                $('#delete_modal').find('input[name="idServicio"]').val(resp.data['idServicio'])
+                                $('#delete_modal').find('span[name="codigo"]').text(resp.data['codigo'])
                                 $('#delete_modal').modal('show')
                             } else {
-                                alert("Ocurrió un error al obtener datos únicos")
+                                alertify.error(mensaje_error_single_data);
                             }
                         }
                     })
@@ -149,153 +202,128 @@ $(function () {
         });
     }
 
-
-
-
-
     // READ DATA
     load_data()
+
+
+
     // CREATE DATA
-    $('#new-author-frm').submit(function (e) {
+    $('#new-frm').submit(function (e) {
         e.preventDefault()
         $('#add_modal button').attr('disabled', true)
-        $('#add_modal button[form="new-author-frm"]').text("saving ...")
+        $('#add_modal button[form="new-frm"]').text("Creando ...")
         $.ajax({
-            url: 'save_data.php',
-            data: $(this).serialize(),
-            method: 'POST',
+            url: URL,
+            type: TYPE,
+            data: $(this).serialize() + '&op=' + 1,
             dataType: "json",
+            // HANDLING ERROR
             error: err => {
-                alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                alertify.error('Error, revisar consola');
+                console.log(err);
+                // RESET
+                $('#edit-frm').get(0).reset()
+                $('.modal').modal('hide')
+                draw_data();
+                $('#edit_modal button').attr('disabled', false)
+                $('#edit_modal button[form="edit-frm"]').text("Crear")
             },
             success: function (resp) {
                 if (!!resp.status) {
                     if (resp.status == 'success') {
-                        var _el = $('<div>')
-                        _el.hide()
-                        _el.addClass('alert alert-primary alert_msg')
-                        _el.text("Datos guardados con éxito");
-                        $('#new-author-frm').get(0).reset()
+                        alertify.success('Registro creado correctamente');
+                        $('#new-frm').get(0).reset()
                         $('.modal').modal('hide')
-                        $('#msg').append(_el)
-                        _el.show('slow')
                         draw_data();
-                        setTimeout(() => {
-                            _el.hide('slow')
-                                .remove()
-                        }, 2500)
                     } else if (resp.status == 'success' && !!resp.msg) {
-                        var _el = $('<div>')
-                        _el.hide()
-                        _el.addClass('alert alert-danger alert_msg form-group')
-                        _el.text(resp.msg);
-                        $('#new-author-frm').append(_el)
-                        _el.show('slow')
+                        alertify.warning(resp.msg);
                     } else {
-                        alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                        alertify.error(mensaje_error_single_data);
                     }
                 } else {
-                    alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                    alertify.error(mensaje_error_single_data);
                 }
 
                 $('#add_modal button').attr('disabled', false)
-                $('#add_modal button[form="new-author-frm"]').text("Save")
+                $('#add_modal button[form="new-frm"]').text("Crear")
             }
         })
     })
     // UPDATE DATA
-    $('#edit-author-frm').submit(function (e) {
+    $('#edit-frm').submit(function (e) {
         e.preventDefault()
         $('#edit_modal button').attr('disabled', true)
-        $('#edit_modal button[form="edit-author-frm"]').text("saving ...")
+        $('#edit_modal button[form="edit-frm"]').text("Actualizando ...")
         $.ajax({
-            url: 'update_data.php',
-            data: $(this).serialize(),
+            url: URL,
+            type: TYPE,
+            data: $(this).serialize() + '&op=' + 3,
             method: 'POST',
             dataType: "json",
+            // HANDLING ERROR
             error: err => {
-                alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                alertify.error('Error, revisar consola');
+                console.log(err.responseText);
+                // RESET
+                $('#edit-frm').get(0).reset()
+                $('.modal').modal('hide')
+                draw_data();
+                $('#edit_modal button').attr('disabled', false)
+                $('#edit_modal button[form="edit-frm"]').text("Actualizar")
             },
             success: function (resp) {
                 if (!!resp.status) {
                     if (resp.status == 'success') {
-                        var _el = $('<div>')
-                        _el.hide()
-                        _el.addClass('alert alert-primary alert_msg')
-                        _el.text("Data successfulle updated");
-                        $('#edit-author-frm').get(0).reset()
+                        alertify.success('Registro actualizado correctamente');
+                        $('#edit-frm').get(0).reset()
                         $('.modal').modal('hide')
-                        $('#msg').append(_el)
-                        _el.show('slow')
                         draw_data();
-                        setTimeout(() => {
-                            _el.hide('slow')
-                                .remove()
-                        }, 2500)
                     } else if (resp.status == 'success' && !!resp.msg) {
-                        var _el = $('<div>')
-                        _el.hide()
-                        _el.addClass('alert alert-danger alert_msg form-group')
-                        _el.text(resp.msg);
-                        $('#edit-author-frm').append(_el)
-                        _el.show('slow')
+                        alertify.warning(resp.msg);
                     } else {
-                        alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                        alertify.error(mensaje_error_single_data);
                     }
                 } else {
-                    alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                    alertify.error(mensaje_error_single_data);
                 }
 
                 $('#edit_modal button').attr('disabled', false)
-                $('#edit_modal button[form="edit-author-frm"]').text("Save")
+                $('#edit_modal button[form="edit-frm"]').text("Actualizar")
             }
         })
     })
     // DELETE DATA
-    $('#delete-author-frm').submit(function (e) {
+    $('#delete-frm').submit(function (e) {
         e.preventDefault()
         $('#delete_modal button').attr('disabled', true)
-        $('#delete_modal button[form="delete-author-frm"]').text("deleting data ...")
+        $('#delete_modal button[form="delete-frm"]').text("Eliminando ...")
         $.ajax({
-            url: 'delete_data.php',
-            data: $(this).serialize(),
-            method: 'POST',
+            url: URL,
+            type: TYPE,
+            data: $(this).serialize() + '&op=' + 4,
             dataType: "json",
             error: err => {
-                alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                alertify.error('Error, revisar consola');
+                console.log(err);
             },
             success: function (resp) {
                 if (!!resp.status) {
                     if (resp.status == 'success') {
-                        var _el = $('<div>')
-                        _el.hide()
-                        _el.addClass('alert alert-primary alert_msg')
-                        _el.text("Datos actualizados con éxito");
-                        $('#delete-author-frm').get(0).reset()
+                        alertify.success('Registro eliminado correctamente');
+                        $('#delete-frm').get(0).reset()
                         $('.modal').modal('hide')
-                        $('#msg').append(_el)
-                        _el.show('slow')
                         draw_data();
-                        setTimeout(() => {
-                            _el.hide('slow')
-                                .remove()
-                        }, 2500)
                     } else if (resp.status == 'success' && !!resp.msg) {
-                        var _el = $('<div>')
-                        _el.hide()
-                        _el.addClass('alert alert-danger alert_msg form-group')
-                        _el.text(resp.msg);
-                        $('#delete-author-frm').append(_el)
-                        _el.show('slow')
+                        alertify.warning(resp.msg);
                     } else {
-                        alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                        alertify.error(mensaje_error_single_data);
                     }
                 } else {
-                    alert("Ocurrió un error. Comprueba el código fuente e inténtalo de nuevo.")
+                    alertify.error(mensaje_error_single_data);
                 }
 
                 $('#delete_modal button').attr('disabled', false)
-                $('#delete_modal button[form="delete-author-frm"]').text("YEs")
+                $('#delete_modal button[form="delete-frm"]').text("Sí")
             }
         })
     })
