@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php $titleTable = 'Registro de Servicio' ?>
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +13,7 @@
     <!-- JS - jQuery - AJAX -->
     <script src="<?php echo web_root; ?>public/javascripts/s_registro.js"></script>
 
-    <title>Administrar Registro de Servicios</title>
+    <title>Administrar <?php echo $titleTable ?></title>
     <!-- <style>
         button.dt-button.btn-primary {
             background: var(--bs-primary) !important;
@@ -24,7 +25,7 @@
 <body>
 
     <center>
-        <h1>Administrar Registro de Servicios</h1>
+        <h1>Administrar <?php echo $titleTable ?></h1>
         <input type="button" value="Atras" onclick="historyBack()">
         <input type="button" value="Home - Admin" onclick="irHomeAdmin()">
 
@@ -68,7 +69,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Agregar Registro de Servicio</h5>
+                <h5 class="modal-title">Agregar <?php echo $titleTable ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -118,7 +119,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar Detalles de Registro de Servicio</h5>
+                <h5 class="modal-title">Editar Detalles de <?php echo $titleTable ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -173,8 +174,8 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <form action="" id="delete-frm">
-                        <input type="hidden" name="idServicio">
-                        <p>Estás seguro de eliminar a <b><span name="codigo"></span></b>?</p>
+                        <input type="hidden" name="idRegistro">
+                        <p>Estás seguro de eliminar a <b><span name="idRegistro"></span></b>?</p>
                     </form>
                 </div>
             </div>

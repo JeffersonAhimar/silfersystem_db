@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php $titleTable = 'Cliente' ?>
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +13,7 @@
     <!-- JS - jQuery - AJAX -->
     <script src="<?php echo web_root; ?>public/javascripts/cliente.js"></script>
 
-    <title>Administrar Clientes</title>
+    <title>Administrar <?php echo $titleTable ?></title>
     <!-- <style>
         button.dt-button.btn-primary {
             background: var(--bs-primary) !important;
@@ -29,7 +30,7 @@
 <body>
 
     <center>
-        <h1>Administrar Clientes</h1>
+        <h1>Administrar <?php echo $titleTable ?></h1>
         <input type="button" value="Atras" onclick="historyBack()">
         <input type="button" value="Home - Admin" onclick="irHomeAdmin()">
         <br><br>
@@ -68,7 +69,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Agregar Cliente</h5>
+                <h5 class="modal-title">Agregar <?php echo $titleTable ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -108,7 +109,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar Detalles de Cliente</h5>
+                <h5 class="modal-title">Editar Detalles de <?php echo $titleTable ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

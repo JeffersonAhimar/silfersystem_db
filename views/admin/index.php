@@ -10,6 +10,21 @@
     <?php require_once '../../src/util/config.php'; ?>
     <?php require_once server_root . 'src/dependencies/dependencias.php'; ?>
     <title>Inicio Admin</title>
+    <style>
+        input {
+            margin-left: 800px;
+        }
+
+        .inputs2 {
+            position: relative;
+            left: 80px;
+        }
+
+        .inputs3 {
+            position: relative;
+            left: 200px;
+        }
+    </style>
 </head>
 
 <script>
@@ -45,28 +60,34 @@
         window.open('s_factura.php', '_self');
     }
 
+    function goS_Deposito() {
+        window.open('s_deposito.php', '_self');
+    }
 </script>
 
-<body>
-    <center>
-        <br>
-        <input type="button" value="Clientes" onclick="goCliente()">
-        <br><br>
-        <input type="button" value="Servicio" onclick="goServicio()">
-        <br><br>
-        <input type="button" value="S_Registro" onclick="goS_Registro()">
-        <br><br>
-        <input type="button" value="S_Orden" onclick="goS_Orden()">
-        <br><br>
-        <input type="button" value="S_Contrato" onclick="goS_Contrato()">
-        <br><br>
-        <input type="button" value="S_Entregable" onclick="goS_Entregable()">
-        <br><br>
-        <input type="button" value="S_Conformidad" onclick="goS_Conformidad()">
-        <br><br>
-        <input type="button" value="S_Factura" onclick="goS_Factura()">
 
-    </center>
+<body>
+
+    <br>
+    <input type="button" value="Clientes" onclick="goCliente()">
+    <br><br>
+    <input type="button" value="Servicio" onclick="goServicio()">
+    <br><br>
+    <input type="button" value="S_Registro" onclick="goS_Registro()" class="inputs2">
+    <br><br>
+    <input type="button" value="S_Orden" onclick="goS_Orden()" class="inputs2">
+    <br><br>
+    <input type="button" value="S_Contrato" onclick="goS_Contrato()" class="inputs2">
+    <br><br>
+    <input type="button" value="S_Entregable" onclick="goS_Entregable()" class="inputs2">
+    <br><br>
+    <input type="button" value="S_Conformidad" onclick="goS_Conformidad()" class="inputs3">
+    <br><br>
+    <input type="button" value="S_Factura" onclick="goS_Factura()" class="inputs3">
+    <br><br>
+    <input type="button" value="S_Deposito" onclick="goS_Deposito()" class="inputs3">
+
+
 </body>
 
 </html>

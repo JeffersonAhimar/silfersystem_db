@@ -188,11 +188,11 @@ $(function () {
         alertify.error("Error, revisar consola");
         console.log(err);
         // RESET
-        $("#edit-frm").get(0).reset();
+        $("#new-frm").get(0).reset();
         $(".modal").modal("hide");
         draw_data();
-        $("#edit_modal button").attr("disabled", false);
-        $('#edit_modal button[form="edit-frm"]').text("Crear");
+        $("#add_modal button").attr("disabled", false);
+        $('#add_modal button[form="new-frm"]').text("Crear");
       },
       success: function (resp) {
         if (!!resp.status) {

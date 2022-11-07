@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $titleTable = 'Servicio' ?>
+<?php $titleTable = 'Entregable de Servicio' ?>
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <?php require_once server_root . 'src/dependencies/dependencias.php'; ?>
 
     <!-- JS - jQuery - AJAX -->
-    <script src="<?php echo web_root; ?>public/javascripts/servicio.js"></script>
+    <script src="<?php echo web_root; ?>public/javascripts/s_entregable.js"></script>
 
     <title>Administrar <?php echo $titleTable ?></title>
     <!-- <style>
@@ -35,28 +35,26 @@
             <thead>
                 <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th class="px-1 py-1 text-center" width="3%">id</th>
-                    <th class="px-1 py-1 text-center">código</th>
-                    <th class="px-1 py-1 text-center">descripción</th>
-                    <th class="px-1 py-1 text-center" width="2%">bases</th>
-                    <th class="px-1 py-1 text-center" width="2%">moneda</th>
-                    <th class="px-1 py-1 text-center">monto</th>
-                    <th class="px-1 py-1 text-center">fecha</th>
+                    <th class="px-1 py-1 text-center">numero</th>
+                    <th class="px-1 py-1 text-center">fec_maxima</th>
+                    <th class="px-1 py-1 text-center">fec_entrega</th>
+                    <th class="px-1 py-1 text-center">forma_pago</th>
+                    <th class="px-1 py-1 text-center">plazo_entregable</th>
                     <th class="px-1 py-1 text-center" width="2%">link</th>
-                    <th class="px-1 py-1 text-center" width="2%">idCliente</th>
+                    <th class="px-1 py-1 text-center" width="2%">idServicio</th>
                     <th class="px-1 py-1 text-center" width="5%">Acciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th class="px-1 py-1 text-center" width="3%">id</th>
-                    <th class="px-1 py-1 text-center">código</th>
-                    <th class="px-1 py-1 text-center">descripción</th>
-                    <th class="px-1 py-1 text-center" width="2%">bases</th>
-                    <th class="px-1 py-1 text-center" width="2%">moneda</th>
-                    <th class="px-1 py-1 text-center">monto</th>
-                    <th class="px-1 py-1 text-center">fecha</th>
+                    <th class="px-1 py-1 text-center">numero</th>
+                    <th class="px-1 py-1 text-center">fec_maxima</th>
+                    <th class="px-1 py-1 text-center">fec_entrega</th>
+                    <th class="px-1 py-1 text-center">forma_pago</th>
+                    <th class="px-1 py-1 text-center">plazo_entregable</th>
                     <th class="px-1 py-1 text-center" width="2%">link</th>
-                    <th class="px-1 py-1 text-center" width="2%">idCliente</th>
+                    <th class="px-1 py-1 text-center" width="2%">idServicio</th>
                     <th class="px-1 py-1 text-center" width="5%">Acciones</th>
                 </tr>
             </tfoot>
@@ -80,42 +78,34 @@
                 <div class="container-fluid">
                     <form action="" id="new-frm">
                         <!-- CAMPOS -->
-                        <input type="hidden" name="idServicio">
+                        <input type="hidden" name="idEntregable">
                         <div class="mb-2">
-                            <label for="codigo" class="control-label">codigo</label>
-                            <input type="text" class="form-control rounded-0" id="codigo" name="codigo" required>
+                            <label for="numero" class="control-label">numero</label>
+                            <input type="text" class="form-control rounded-0" id="numero" name="numero">
                         </div>
                         <div class="mb-2">
-                            <label for="descripcion" class="control-label">descripcion</label>
-                            <input type="text" class="form-control rounded-0" id="descripcion" name="descripcion" required>
+                            <label for="fec_maxima" class="control-label">fec_maxima</label>
+                            <input type="date" class="form-control rounded-0" id="fec_maxima" name="fec_maxima" required>
                         </div>
                         <div class="mb-2">
-                            <label for="bases" class="control-label">bases</label>
-                            <input type="text" class="form-control rounded-0" id="bases" name="bases">
+                            <label for="fec_entrega" class="control-label">fec_entrega</label>
+                            <input type="date" class="form-control rounded-0" id="fec_entrega" name="fec_entrega" required>
                         </div>
                         <div class="mb-2">
-                            <label for="moneda" class="control-label">moneda</label>
-                            <select class="form-control rounded-0" id="moneda" name="moneda">
-                                <!-- OPTIONS -->
-                                <?php require server_root . 'src/dependencies/moneda.php'; ?>
-                                <!-- /OPTIONS -->
-                            </select>
+                            <label for="forma_pago" class="control-label">forma_pago</label>
+                            <input type="number" class="form-control rounded-0" id="forma_pago" name="forma_pago" required>
                         </div>
                         <div class="mb-2">
-                            <label for="monto" class="control-label">monto</label>
-                            <input type="number" step="any" class="form-control rounded-0" id="monto" name="monto">
-                        </div>
-                        <div class="mb-2">
-                            <label for="fecha" class="control-label">fecha</label>
-                            <input type="date" class="form-control rounded-0" id="fecha" name="fecha">
+                            <label for="plazo_entregable" class="control-label">plazo_entregable</label>
+                            <input type="text" class="form-control rounded-0" id="plazo_entregable" name="plazo_entregable" required>
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>
                             <input type="text" class="form-control rounded-0" id="link" name="link">
                         </div>
                         <div class="mb-2">
-                            <label for="idCliente" class="control-label">idCliente</label>
-                            <input type="text" class="form-control rounded-0" id="idCliente" name="idCliente">
+                            <label for="idServicio" class="control-label">idServicio</label>
+                            <input type="text" class="form-control rounded-0" id="idServicio" name="idServicio">
                         </div>
                         <!-- /CAMPOS -->
                     </form>
@@ -142,42 +132,34 @@
                 <div class="container-fluid">
                     <form action="" id="edit-frm">
                         <!-- CAMPOS -->
-                        <input type="hidden" name="idServicio">
+                        <input type="hidden" name="idEntregable">
                         <div class="mb-2">
-                            <label for="codigo" class="control-label">codigo</label>
-                            <input type="text" class="form-control rounded-0" id="codigo" name="codigo" required>
+                            <label for="numero" class="control-label">numero</label>
+                            <input type="text" class="form-control rounded-0" id="numero" name="numero">
                         </div>
                         <div class="mb-2">
-                            <label for="descripcion" class="control-label">descripcion</label>
-                            <input type="text" class="form-control rounded-0" id="descripcion" name="descripcion" required>
+                            <label for="fec_maxima" class="control-label">fec_maxima</label>
+                            <input type="date" class="form-control rounded-0" id="fec_maxima" name="fec_maxima" required>
                         </div>
                         <div class="mb-2">
-                            <label for="bases" class="control-label">bases</label>
-                            <input type="text" class="form-control rounded-0" id="bases" name="bases">
+                            <label for="fec_entrega" class="control-label">fec_entrega</label>
+                            <input type="date" class="form-control rounded-0" id="fec_entrega" name="fec_entrega" required>
                         </div>
                         <div class="mb-2">
-                            <label for="moneda" class="control-label">moneda</label>
-                            <select class="form-control rounded-0" id="moneda" name="moneda">
-                                <!-- OPTIONS -->
-                                <?php require server_root . 'src/dependencies/moneda.php'; ?>
-                                <!-- /OPTIONS -->
-                            </select>
+                            <label for="forma_pago" class="control-label">forma_pago</label>
+                            <input type="number" class="form-control rounded-0" id="forma_pago" name="forma_pago" required>
                         </div>
                         <div class="mb-2">
-                            <label for="monto" class="control-label">monto</label>
-                            <input type="text" class="form-control rounded-0" id="monto" name="monto">
-                        </div>
-                        <div class="mb-2">
-                            <label for="fecha" class="control-label">fecha</label>
-                            <input type="date" class="form-control rounded-0" id="fecha" name="fecha">
+                            <label for="plazo_entregable" class="control-label">plazo_entregable</label>
+                            <input type="text" class="form-control rounded-0" id="plazo_entregable" name="plazo_entregable" required>
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>
                             <input type="text" class="form-control rounded-0" id="link" name="link">
                         </div>
                         <div class="mb-2">
-                            <label for="idCliente" class="control-label">idCliente</label>
-                            <input type="text" class="form-control rounded-0" id="idCliente" name="idCliente">
+                            <label for="idServicio" class="control-label">idServicio</label>
+                            <input type="text" class="form-control rounded-0" id="idServicio" name="idServicio">
                         </div>
                         <!-- /CAMPOS -->
                     </form>
@@ -202,8 +184,8 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <form action="" id="delete-frm">
-                        <input type="hidden" name="idServicio">
-                        <p>Estás seguro de eliminar a <b><span name="codigo"></span></b>?</p>
+                        <input type="hidden" name="idEntregable">
+                        <p>Estás seguro de eliminar a <b><span name="idEntregable"></span></b>?</p>
                     </form>
                 </div>
             </div>

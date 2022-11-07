@@ -1,5 +1,5 @@
 // VARIABLES CONSTANTES
-const URL = "../../controllers/s_registroController.php";
+const URL = "../../controllers/s_contratoController.php";
 const TYPE = "POST";
 
 let tblData = '';
@@ -33,23 +33,15 @@ $(function () {
             // COLUMNAS
             columns: [
                 {
-                    data: 'idRegistro',
+                    data: 'idContrato',
                     className: 'py-0 px-1'
                 },
                 {
-                    data: 'fecha',
+                    data: 'numero',
                     className: 'py-0 px-1'
                 },
                 {
-                    data: 'fec_buena_pro',
-                    className: 'py-0 px-1'
-                },
-                {
-                    data: 'fec_consentimiento',
-                    className: 'py-0 px-1'
-                },
-                {
-                    data: 'fec_perfeccionamiento',
+                    data: 'fec_ejecucion',
                     className: 'py-0 px-1'
                 },
                 {
@@ -79,13 +71,12 @@ $(function () {
                     render: function (data, type, row, meta) {
                         console.log()
                         let extra_btns = '';
-                        extra_btns += '<a class="me-2 btn btn-sm py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.idRegistro) + '">Editar</a>';
-                        extra_btns += '<a class="btn btn-sm py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.idRegistro) + '">Eliminar</a>';
+                        extra_btns += '<a class="me-2 btn btn-sm py-0 edit_data btn-primary" href="javascript:void(0)" data-id="' + (row.idContrato) + '">Editar</a>';
+                        extra_btns += '<a class="btn btn-sm py-0 delete_data btn-danger" href="javascript:void(0)" data-id="' + (row.idContrato) + '">Eliminar</a>';
                         return extra_btns;
                     }
                 }
             ],
-            // --COLUMNAS
             // FUNCIONES
             drawCallback: function (settings) {
                 $('.edit_data').click(function () {
@@ -94,7 +85,7 @@ $(function () {
                         type: TYPE,
                         data: {
                             op: '5',
-                            idRegistro: $(this).attr('data-id')
+                            idContrato: $(this).attr('data-id')
                         },
                         dataType: 'json',
                         error: err => {
@@ -124,7 +115,7 @@ $(function () {
                         type: TYPE,
                         data: {
                             op: '5',
-                            idRegistro: $(this).attr('data-id')
+                            idContrato: $(this).attr('data-id')
                         },
                         dataType: 'json',
                         error: err => {
@@ -133,8 +124,8 @@ $(function () {
                         },
                         success: function (resp) {
                             if (!!resp.status) {
-                                $('#delete_modal').find('input[name="idRegistro"]').val(resp.data['idRegistro'])
-                                $('#delete_modal').find('span[name="idRegistro"]').text(resp.data['idRegistro'])
+                                $('#delete_modal').find('input[name="idContrato"]').val(resp.data['idContrato'])
+                                $('#delete_modal').find('span[name="numero"]').text(resp.data['numero'])
                                 $('#delete_modal').modal('show')
                             } else {
                                 alertify.error(mensaje_error_single_data);
@@ -143,7 +134,6 @@ $(function () {
                     })
                 })
             },
-            // --FUNCIONES
             // BOTONES EXTRA
             buttons:
                 [
@@ -158,13 +148,11 @@ $(function () {
                     'csvHtml5',
                     'pdfHtml5'
                 ],
-            // --BOTONES EXTRA
             // MODO DE ORDENAMIENTO
             "order":
                 [
                     [0, "asc"]
                 ],
-            // --MODO DE ORDENAMIENTO
             initComplete: function (settings) {
                 $('.paginate_button').addClass('p-1')
             }

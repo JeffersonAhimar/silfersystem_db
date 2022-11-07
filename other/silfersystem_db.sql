@@ -1,12 +1,10 @@
 -- CREATE DATABASE IF NOT EXISTS silfersystem_db;
-
-
 -- CLIENTE
 CREATE TABLE IF NOT EXISTS cliente(
     idCliente INT PRIMARY KEY AUTO_INCREMENT,
     codigo VARCHAR(100) NOT NULL UNIQUE,
     nombre VARCHAR(100) NOT NULL,
-    ruc CHAR(11) NOT NULL,
+    ruc CHAR(11),
     link VARCHAR(512)
 );
 
@@ -16,7 +14,7 @@ CREATE TABLE IF NOT EXISTS servicio(
     codigo VARCHAR(100) NOT NULL UNIQUE,
     descripcion VARCHAR(250) NOT NULL,
     bases VARCHAR(250) NOT NULL,
-    moneda ENUM('S','D','ND'),
+    moneda ENUM('S', 'D', 'ND'),
     monto DOUBLE,
     fecha DATE NOT NULL,
     link VARCHAR(512),
@@ -41,7 +39,6 @@ CREATE TABLE IF NOT EXISTS s_orden(
     idOrden INT PRIMARY KEY AUTO_INCREMENT,
     numero VARCHAR(50) NOT NULL,
     fec_emision DATE NOT NULL,
-    monto DOUBLE NOT NULL,
     numero_siaf VARCHAR(50) NOT NULL,
     link VARCHAR(512),
     idServicio INT,
@@ -61,6 +58,7 @@ CREATE TABLE IF NOT EXISTS s_contrato(
 -- ENTREGABLE
 CREATE TABLE IF NOT EXISTS s_entregable(
     idEntregable INT PRIMARY KEY AUTO_INCREMENT,
+    numero VARCHAR (50) NOT NULL,
     fec_maxima DATE,
     fec_entrega DATE,
     forma_pago INT,
@@ -83,7 +81,7 @@ CREATE TABLE IF NOT EXISTS s_conformidad(
 CREATE TABLE IF NOT EXISTS s_factura(
     idFactura INT PRIMARY KEY AUTO_INCREMENT,
     numero VARCHAR (50) NOT NULL,
-    moneda ENUM('S','D','ND'),
+    moneda ENUM('S', 'D', 'ND'),
     monto DOUBLE,
     fec_emision DATE,
     fec_deposito DATE,
@@ -98,7 +96,7 @@ CREATE TABLE IF NOT EXISTS s_factura(
 -- DEPOSITO
 CREATE TABLE IF NOT EXISTS s_deposito(
     idDeposito INT PRIMARY KEY AUTO_INCREMENT,
-    moneda ENUM('S','D','ND'),
+    moneda ENUM('S', 'D', 'ND'),
     monto DOUBLE,
     fecha DATE,
     link VARCHAR(512),

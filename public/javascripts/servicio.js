@@ -120,6 +120,7 @@ $(function () {
                     }
                 }
             ],
+            // --COLUMNAS
             // FUNCIONES
             drawCallback: function (settings) {
                 $('.edit_data').click(function () {
@@ -177,6 +178,7 @@ $(function () {
                     })
                 })
             },
+            // --FUNCIONES
             // BOTONES EXTRA
             buttons:
                 [
@@ -191,11 +193,13 @@ $(function () {
                     'csvHtml5',
                     'pdfHtml5'
                 ],
+            // --BOTONES EXTRA
             // MODO DE ORDENAMIENTO
             "order":
                 [
                     [0, "asc"]
                 ],
+            // --MODO DE ORDENAMIENTO
             initComplete: function (settings) {
                 $('.paginate_button').addClass('p-1')
             }
@@ -204,8 +208,6 @@ $(function () {
 
     // READ DATA
     load_data()
-
-
 
     // CREATE DATA
     $('#new-frm').submit(function (e) {
@@ -222,11 +224,11 @@ $(function () {
                 alertify.error('Error, revisar consola');
                 console.log(err);
                 // RESET
-                $('#edit-frm').get(0).reset()
+                $('#new-frm').get(0).reset()
                 $('.modal').modal('hide')
                 draw_data();
-                $('#edit_modal button').attr('disabled', false)
-                $('#edit_modal button[form="edit-frm"]').text("Crear")
+                $('#add_modal button').attr('disabled', false)
+                $('#add_modal button[form="new-frm"]').text("Crear")
             },
             success: function (resp) {
                 if (!!resp.status) {
@@ -249,6 +251,7 @@ $(function () {
             }
         })
     })
+
     // UPDATE DATA
     $('#edit-frm').submit(function (e) {
         e.preventDefault()
@@ -292,6 +295,7 @@ $(function () {
             }
         })
     })
+
     // DELETE DATA
     $('#delete-frm').submit(function (e) {
         e.preventDefault()
@@ -327,4 +331,5 @@ $(function () {
             }
         })
     })
+
 });
