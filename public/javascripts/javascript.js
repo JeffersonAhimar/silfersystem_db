@@ -1,7 +1,8 @@
-function historyBack(){
+function historyBack() {
     history.back();
 }
 
-function irHomeAdmin(){
-    window.open('../../views/admin/index.php','_self');
+function irHomeAdmin() {
+    window.open('../../views/admin/index.php', '_self');
 }
+

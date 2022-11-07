@@ -50,3 +50,18 @@ VALUES
     ('cliente38', 'Cliente 38', '38', 'link38'),
     ('cliente39', 'Cliente 39', '39', 'link39'),
     ('cliente40', 'Cliente 40', '40', 'link40');
+
+-- servicio
+INSERT INTO
+    servicio(
+        `codigo`,
+        `descripcion`,
+        `bases`,
+        `moneda`,
+        `monto`,
+        `fecha`,
+        `link`,
+        `idCliente`
+    )
+VALUES
+    ('serv', 'desc', 'http://silfersystem.com/', 'S', '00', '', '', ''),

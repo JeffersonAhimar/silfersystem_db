@@ -19,6 +19,11 @@
             color: white;
         }
     </style> -->
+    <style>
+        thead input {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>

@@ -83,8 +83,8 @@ CREATE TABLE IF NOT EXISTS s_conformidad(
 CREATE TABLE IF NOT EXISTS s_factura(
     idFactura INT PRIMARY KEY AUTO_INCREMENT,
     numero VARCHAR (50) NOT NULL,
-    monto DOUBLE,
     moneda ENUM('S','D','ND'),
+    monto DOUBLE,
     fec_emision DATE,
     fec_deposito DATE,
     monto_abonado DOUBLE,
@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS s_factura(
 -- DEPOSITO
 CREATE TABLE IF NOT EXISTS s_deposito(
     idDeposito INT PRIMARY KEY AUTO_INCREMENT,
-    monto DOUBLE,
     moneda ENUM('S','D','ND'),
+    monto DOUBLE,
     fecha DATE,
     link VARCHAR(512),
     idFactura INT,

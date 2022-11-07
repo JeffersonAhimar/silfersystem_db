@@ -10,9 +10,9 @@
     <?php require_once server_root . 'src/dependencies/dependencias.php'; ?>
 
     <!-- JS - jQuery - AJAX -->
-    <script src="<?php echo web_root; ?>public/javascripts/servicio.js"></script>
+    <script src="<?php echo web_root; ?>public/javascripts/s_registro.js"></script>
 
-    <title>Administrar Servicios</title>
+    <title>Administrar Registro de Servicios</title>
     <!-- <style>
         button.dt-button.btn-primary {
             background: var(--bs-primary) !important;
@@ -24,38 +24,34 @@
 <body>
 
     <center>
-        <h1>Administrar Servicios</h1>
+        <h1>Administrar Registro de Servicios</h1>
         <input type="button" value="Atras" onclick="historyBack()">
         <input type="button" value="Home - Admin" onclick="irHomeAdmin()">
-        
+
         <br><br>
 
         <table id="tblData" class="display responsive nowrap table table-bordered" style="width:100%">
             <thead>
                 <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th class="px-1 py-1 text-center" width="3%">id</th>
-                    <th class="px-1 py-1 text-center">código</th>
-                    <th class="px-1 py-1 text-center">descripción</th>
-                    <th class="px-1 py-1 text-center" width="2%">bases</th>
-                    <th class="px-1 py-1 text-center" width="2%">moneda</th>
-                    <th class="px-1 py-1 text-center">monto</th>
                     <th class="px-1 py-1 text-center">fecha</th>
+                    <th class="px-1 py-1 text-center">fecha_buena_pro</th>
+                    <th class="px-1 py-1 text-center">fecha_consentimiento</th>
+                    <th class="px-1 py-1 text-center">fecha_perfeccionamiento</th>
                     <th class="px-1 py-1 text-center" width="2%">link</th>
-                    <th class="px-1 py-1 text-center" width="2%">idCliente</th>
+                    <th class="px-1 py-1 text-center" width="2%">idServicio</th>
                     <th class="px-1 py-1 text-center" width="5%">Acciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th class="px-1 py-1 text-center" width="3%">id</th>
-                    <th class="px-1 py-1 text-center">código</th>
-                    <th class="px-1 py-1 text-center">descripción</th>
-                    <th class="px-1 py-1 text-center" width="2%">bases</th>
-                    <th class="px-1 py-1 text-center" width="2%">moneda</th>
-                    <th class="px-1 py-1 text-center">monto</th>
                     <th class="px-1 py-1 text-center">fecha</th>
+                    <th class="px-1 py-1 text-center">fecha_buena_pro</th>
+                    <th class="px-1 py-1 text-center">fecha_consentimiento</th>
+                    <th class="px-1 py-1 text-center">fecha_perfeccionamiento</th>
                     <th class="px-1 py-1 text-center" width="2%">link</th>
-                    <th class="px-1 py-1 text-center" width="2%">idCliente</th>
+                    <th class="px-1 py-1 text-center" width="2%">idServicio</th>
                     <th class="px-1 py-1 text-center" width="5%">Acciones</th>
                 </tr>
             </tfoot>
@@ -72,49 +68,37 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Agregar Servicio</h5>
+                <h5 class="modal-title">Agregar Registro de Servicio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form action="" id="new-frm">
                         <!-- CAMPOS -->
-                        <input type="hidden" name="idServicio">
-                        <div class="mb-2">
-                            <label for="codigo" class="control-label">codigo</label>
-                            <input type="text" class="form-control rounded-0" id="codigo" name="codigo" required>
-                        </div>
-                        <div class="mb-2">
-                            <label for="descripcion" class="control-label">descripcion</label>
-                            <input type="text" class="form-control rounded-0" id="descripcion" name="descripcion" required>
-                        </div>
-                        <div class="mb-2">
-                            <label for="bases" class="control-label">bases</label>
-                            <input type="text" class="form-control rounded-0" id="bases" name="bases">
-                        </div>
-                        <div class="mb-2">
-                            <label for="moneda" class="control-label">moneda</label>
-                            <select class="form-control rounded-0" id="moneda" name="moneda">
-                                <!-- OPTIONS -->
-                                <?php require server_root . 'src/dependencies/moneda.php'; ?>
-                                <!-- /OPTIONS -->
-                            </select>
-                        </div>
-                        <div class="mb-2">
-                            <label for="monto" class="control-label">monto</label>
-                            <input type="text" class="form-control rounded-0" id="monto" name="monto">
-                        </div>
+                        <input type="hidden" name="idRegistro">
                         <div class="mb-2">
                             <label for="fecha" class="control-label">fecha</label>
-                            <input type="date" class="form-control rounded-0" id="fecha" name="fecha">
+                            <input type="date" class="form-control rounded-0" id="fecha" name="fecha" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="fec_buena_pro" class="control-label">fec_buena_pro</label>
+                            <input type="date" class="form-control rounded-0" id="fec_buena_pro" name="fec_buena_pro" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="fec_consentimiento" class="control-label">fec_consentimiento</label>
+                            <input type="date" class="form-control rounded-0" id="fec_consentimiento" name="fec_consentimiento" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="fec_perfeccionamiento" class="control-label">fec_perfeccionamiento</label>
+                            <input type="date" class="form-control rounded-0" id="fec_perfeccionamiento" name="fec_perfeccionamiento" required>
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>
                             <input type="text" class="form-control rounded-0" id="link" name="link">
                         </div>
                         <div class="mb-2">
-                            <label for="idCliente" class="control-label">idCliente</label>
-                            <input type="text" class="form-control rounded-0" id="idCliente" name="idCliente">
+                            <label for="idServicio" class="control-label">idServicio</label>
+                            <input type="text" class="form-control rounded-0" id="idServicio" name="idServicio">
                         </div>
                         <!-- /CAMPOS -->
                     </form>
@@ -134,49 +118,37 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar Detalles de Servicio</h5>
+                <h5 class="modal-title">Editar Detalles de Registro de Servicio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form action="" id="edit-frm">
                         <!-- CAMPOS -->
-                        <input type="hidden" name="idServicio">
-                        <div class="mb-2">
-                            <label for="codigo" class="control-label">codigo</label>
-                            <input type="text" class="form-control rounded-0" id="codigo" name="codigo" required>
-                        </div>
-                        <div class="mb-2">
-                            <label for="descripcion" class="control-label">descripcion</label>
-                            <input type="text" class="form-control rounded-0" id="descripcion" name="descripcion" required>
-                        </div>
-                        <div class="mb-2">
-                            <label for="bases" class="control-label">bases</label>
-                            <input type="text" class="form-control rounded-0" id="bases" name="bases">
-                        </div>
-                        <div class="mb-2">
-                            <label for="moneda" class="control-label">moneda</label>
-                            <select class="form-control rounded-0" id="moneda" name="moneda">
-                                <!-- OPTIONS -->
-                                <?php require server_root . 'src/dependencies/moneda.php'; ?>
-                                <!-- /OPTIONS -->
-                            </select>
-                        </div>
-                        <div class="mb-2">
-                            <label for="monto" class="control-label">monto</label>
-                            <input type="text" class="form-control rounded-0" id="monto" name="monto">
-                        </div>
+                        <input type="hidden" name="idRegistro">
                         <div class="mb-2">
                             <label for="fecha" class="control-label">fecha</label>
-                            <input type="date" class="form-control rounded-0" id="fecha" name="fecha">
+                            <input type="date" class="form-control rounded-0" id="fecha" name="fecha" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="fec_buena_pro" class="control-label">fec_buena_pro</label>
+                            <input type="date" class="form-control rounded-0" id="fec_buena_pro" name="fec_buena_pro" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="fec_consentimiento" class="control-label">fec_consentimiento</label>
+                            <input type="date" class="form-control rounded-0" id="fec_consentimiento" name="fec_consentimiento" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="fec_perfeccionamiento" class="control-label">fec_perfeccionamiento</label>
+                            <input type="date" class="form-control rounded-0" id="fec_perfeccionamiento" name="fec_perfeccionamiento" required>
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>
                             <input type="text" class="form-control rounded-0" id="link" name="link">
                         </div>
                         <div class="mb-2">
-                            <label for="idCliente" class="control-label">idCliente</label>
-                            <input type="text" class="form-control rounded-0" id="idCliente" name="idCliente">
+                            <label for="idServicio" class="control-label">idServicio</label>
+                            <input type="text" class="form-control rounded-0" id="idServicio" name="idServicio">
                         </div>
                         <!-- /CAMPOS -->
                     </form>
