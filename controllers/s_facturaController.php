@@ -19,8 +19,8 @@ switch ($op) {
     case 1: {
             $db = new Database();
             $con = $db->conectar();
-            $create = $con->prepare("INSERT INTO $tblName (`numero`,`moneda`,`monto`,`fec_emision`,`fec_deposito`,`monto_abonado`,`fec_detraccion`,`detraccion`,`link`,`idConformidad`) VALUES (?,?,?,?,?,?,?,?,?,?)");
-            $create->execute([$numero, $moneda, $monto, $fec_emision, $fec_deposito, $monto_abonado, $fec_detraccion, $detraccion, $link, $idConformidad]);
+            $create = $con->prepare("INSERT INTO $tblName (`numero`,`moneda`,`monto`,`fec_emision`,`detraccion`,`fec_detraccion`,`link`,`idConformidad`) VALUES (?,?,?,?,?,?,?,?)");
+            $create->execute([$numero, $moneda, $monto, $fec_emision, $detraccion, $fec_detraccion, $link, $idConformidad]);
             if ($create) {
                 $resp['status'] = 'success';
             } else {
@@ -48,10 +48,8 @@ switch ($op) {
                     $search_where .= " OR moneda LIKE '%{$search['value']}%' ";
                     $search_where .= " OR monto LIKE '%{$search['value']}%' ";
                     $search_where .= " OR date_format(fec_emision,'%M %d, %Y') LIKE '%{$search['value']}%' ";
-                    $search_where .= " OR date_format(fec_deposito,'%M %d, %Y') LIKE '%{$search['value']}%' ";
-                    $search_where .= " OR monto_abonado LIKE '%{$search['value']}%' ";
-                    $search_where .= " OR date_format(fec_detraccion,'%M %d, %Y') LIKE '%{$search['value']}%' ";
                     $search_where .= " OR detraccion LIKE '%{$search['value']}%' ";
+                    $search_where .= " OR date_format(fec_detraccion,'%M %d, %Y') LIKE '%{$search['value']}%' ";
                     $search_where .= " OR link LIKE '%{$search['value']}%' ";
                     $search_where .= " OR idConformidad LIKE '%{$search['value']}%' ";
                 }
@@ -62,10 +60,8 @@ switch ($op) {
                     "moneda",
                     "monto",
                     "unix_timestamp(fec_emision)",
-                    "unix_timestamp(fec_deposito)",
-                    "monto_abonado",
-                    "unix_timestamp(fec_detraccion)",
                     "detraccion",
+                    "unix_timestamp(fec_detraccion)",
                     "link",
                     "idConformidad"
                 );
@@ -106,8 +102,8 @@ switch ($op) {
     case 3: {
             $db = new Database();
             $con = $db->conectar();
-            $update = $con->prepare("UPDATE $tblName SET `numero` = ?, `moneda` = ?, `monto` = ?, `fec_emision` = ?, `fec_deposito` = ?, `monto_abonado` = ?, `fec_detraccion` = ?, `detraccion` = ?, `link` = ?, `idConformidad` = ? WHERE idFactura = ?");
-            $update->execute([$numero, $moneda, $monto, $fec_emision, $fec_deposito, $monto_abonado, $fec_detraccion, $detraccion, $link, $idConformidad, $idFactura]);
+            $update = $con->prepare("UPDATE $tblName SET `numero` = ?, `moneda` = ?, `monto` = ?, `fec_emision` = ?, `detraccion` = ?, `fec_detraccion` = ?, `link` = ?, `idConformidad` = ? WHERE idFactura = ?");
+            $update->execute([$numero, $moneda, $monto, $fec_emision, $detraccion, $fec_detraccion, $link, $idConformidad, $idFactura]);
             if ($update) {
                 $resp['status'] = 'success';
             } else {

@@ -24,8 +24,9 @@
 <!-- DataTables -->
 <link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/css/buttons.bootstrap5.min.css" />
-<!-- <link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/FixedHeader-3.2.4/css/fixedHeader.bootstrap5.min.css" /> -->
 <link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/css/responsive.bootstrap5.min.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/SearchPanes-2.0.2/css/searchPanes.bootstrap5.min.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo web_root; ?>public/plugins/DataTables/Select-1.4.0/css/select.bootstrap5.min.css" />
 
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
@@ -35,6 +36,8 @@
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.bootstrap5.min.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.html5.min.js"></script>
-<!-- <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/FixedHeader-3.2.4/js/dataTables.fixedHeader.min.js"></script> -->
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/js/responsive.bootstrap5.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/SearchPanes-2.0.2/js/dataTables.searchPanes.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/SearchPanes-2.0.2/js/searchPanes.bootstrap5.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Select-1.4.0/js/dataTables.select.min.js"></script>

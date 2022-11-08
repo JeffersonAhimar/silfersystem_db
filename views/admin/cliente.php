@@ -86,7 +86,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="ruc" class="control-label">RUC</label>
-                            <input type="text" class="form-control rounded-0" id="ruc" name="ruc" required>
+                            <input type="text" class="form-control rounded-0" id="ruc" name="ruc">
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="ruc" class="control-label">RUC</label>
-                            <input type="text" class="form-control rounded-0" id="ruc" name="ruc" required>
+                            <input type="text" class="form-control rounded-0" id="ruc" name="ruc">
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>

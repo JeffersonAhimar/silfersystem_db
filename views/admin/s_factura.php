@@ -39,10 +39,8 @@
                     <th class="px-1 py-1 text-center" width="2%">moneda</th>
                     <th class="px-1 py-1 text-center">monto</th>
                     <th class="px-1 py-1 text-center">fec_emision</th>
-                    <th class="px-1 py-1 text-center">fec_deposito</th>
-                    <th class="px-1 py-1 text-center">monto_abonado</th>
-                    <th class="px-1 py-1 text-center">fec_detraccion</th>
                     <th class="px-1 py-1 text-center">detraccion</th>
+                    <th class="px-1 py-1 text-center">fec_detraccion</th>
                     <th class="px-1 py-1 text-center" width="2%">link</th>
                     <th class="px-1 py-1 text-center" width="2%">idConformidad</th>
                     <th class="px-1 py-1 text-center" width="5%">Acciones</th>
@@ -55,10 +53,8 @@
                     <th class="px-1 py-1 text-center" width="2%">moneda</th>
                     <th class="px-1 py-1 text-center">monto</th>
                     <th class="px-1 py-1 text-center">fec_emision</th>
-                    <th class="px-1 py-1 text-center">fec_deposito</th>
-                    <th class="px-1 py-1 text-center">monto_abonado</th>
-                    <th class="px-1 py-1 text-center">fec_detraccion</th>
                     <th class="px-1 py-1 text-center">detraccion</th>
+                    <th class="px-1 py-1 text-center">fec_detraccion</th>
                     <th class="px-1 py-1 text-center" width="2%">link</th>
                     <th class="px-1 py-1 text-center" width="2%">idConformidad</th>
                     <th class="px-1 py-1 text-center" width="5%">Acciones</th>
@@ -106,20 +102,12 @@
                             <input type="date" class="form-control rounded-0" id="fec_emision" name="fec_emision">
                         </div>
                         <div class="mb-2">
-                            <label for="fec_deposito" class="control-label">fec_deposito</label>
-                            <input type="date" class="form-control rounded-0" id="fec_deposito" name="fec_deposito">
-                        </div>
-                        <div class="mb-2">
-                            <label for="monto_abonado" class="control-label">monto_abonado</label>
-                            <input type="number" step="any" class="form-control rounded-0" id="monto_abonado" name="monto_abonado">
+                            <label for="detraccion" class="control-label">detraccion</label>
+                            <input type="number" step="any" class="form-control rounded-0" id="detraccion" name="detraccion">
                         </div>
                         <div class="mb-2">
                             <label for="fec_detraccion" class="control-label">fec_detraccion</label>
                             <input type="date" class="form-control rounded-0" id="fec_detraccion" name="fec_detraccion">
-                        </div>
-                        <div class="mb-2">
-                            <label for="detraccion" class="control-label">detraccion</label>
-                            <input type="number" step="any" class="form-control rounded-0" id="detraccion" name="detraccion">
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>
@@ -176,20 +164,12 @@
                             <input type="date" class="form-control rounded-0" id="fec_emision" name="fec_emision">
                         </div>
                         <div class="mb-2">
-                            <label for="fec_deposito" class="control-label">fec_deposito</label>
-                            <input type="date" class="form-control rounded-0" id="fec_deposito" name="fec_deposito">
-                        </div>
-                        <div class="mb-2">
-                            <label for="monto_abonado" class="control-label">monto_abonado</label>
-                            <input type="number" step="any" class="form-control rounded-0" id="monto_abonado" name="monto_abonado">
+                            <label for="detraccion" class="control-label">detraccion</label>
+                            <input type="number" step="any" class="form-control rounded-0" id="detraccion" name="detraccion">
                         </div>
                         <div class="mb-2">
                             <label for="fec_detraccion" class="control-label">fec_detraccion</label>
                             <input type="date" class="form-control rounded-0" id="fec_detraccion" name="fec_detraccion">
-                        </div>
-                        <div class="mb-2">
-                            <label for="detraccion" class="control-label">detraccion</label>
-                            <input type="number" step="any" class="form-control rounded-0" id="detraccion" name="detraccion">
                         </div>
                         <div class="mb-2">
                             <label for="link" class="control-label">link</label>

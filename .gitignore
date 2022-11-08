@@ -65,3 +65,6 @@ $RECYCLE.BIN/
 
 # config.php
 src/util/config_keys.php
+
+# data sql
+other/silfersystem_db_data.sql

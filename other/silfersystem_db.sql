@@ -1,4 +1,17 @@
 -- CREATE DATABASE IF NOT EXISTS silfersystem_db;
+/*
+ 
+ DROP TABLE s_deposito;
+ DROP TABLE s_factura;
+ DROP TABLE s_conformidad;
+ DROP TABLE s_entregable;
+ DROP TABLE s_contrato;
+ DROP TABLE s_orden;
+ DROP TABLE s_registro;
+ DROP TABLE servicio;
+ DROP TABLE cliente; 
+ 
+ */
 -- CLIENTE
 CREATE TABLE IF NOT EXISTS cliente(
     idCliente INT PRIMARY KEY AUTO_INCREMENT,
@@ -58,7 +71,7 @@ CREATE TABLE IF NOT EXISTS s_contrato(
 -- ENTREGABLE
 CREATE TABLE IF NOT EXISTS s_entregable(
     idEntregable INT PRIMARY KEY AUTO_INCREMENT,
-    numero VARCHAR (50) NOT NULL,
+    numero INT NOT NULL,
     fec_maxima DATE,
     fec_entrega DATE,
     forma_pago INT,
@@ -84,10 +97,8 @@ CREATE TABLE IF NOT EXISTS s_factura(
     moneda ENUM('S', 'D', 'ND'),
     monto DOUBLE,
     fec_emision DATE,
-    fec_deposito DATE,
-    monto_abonado DOUBLE,
-    fec_detraccion DATE,
     detraccion DOUBLE,
+    fec_detraccion DATE,
     link VARCHAR(512),
     idConformidad INT,
     CONSTRAINT FK_s_factura_idConformidad FOREIGN KEY (idConformidad) REFERENCES s_conformidad(idConformidad)
@@ -102,4 +113,4 @@ CREATE TABLE IF NOT EXISTS s_deposito(
     link VARCHAR(512),
     idFactura INT,
     CONSTRAINT FK_s_deposito_idFactura FOREIGN KEY (idFactura) REFERENCES s_factura(idFactura)
-)
+);

@@ -1,49 +1,53 @@
 -- CREATE DATABASE IF NOT EXISTS silfersystem_db;
 -- CLIENTE
--- CREATE TABLE IF NOT EXISTS cliente(
---     idCliente INT PRIMARY KEY AUTO_INCREMENT,
---     codigo VARCHAR(100) NOT NULL,
---     nombre VARCHAR(100) NOT NULL,
---     ruc CHAR(11) NOT NULL,
---     link VARCHAR(512)
--- );
--- INSERT INTO
---     cliente(`codigo`, `nombre`, `ruc`, `link`)
--- VALUES
---     ('cliente1', 'Cliente 1', '1', 'link1'),
---     ('cliente2', 'Cliente 2', '2', 'link2'),
---     ('cliente3', 'Cliente 3', '3', 'link3'),
---     ('cliente4', 'Cliente 4', '4', 'link4'),
---     ('cliente5', 'Cliente 5', '5', 'link5'),
---     ('cliente6', 'Cliente 6', '6', 'link6'),
---     ('cliente7', 'Cliente 7', '7', 'link7'),
---     ('cliente8', 'Cliente 8', '8', 'link8'),
---     ('cliente9', 'Cliente 9', '9', 'link9'),
---     ('cliente10', 'Cliente 10', '10', 'link10'),
---     ('cliente11', 'Cliente 11', '11', 'link11'),
---     ('cliente12', 'Cliente 12', '12', 'link12'),
---     ('cliente13', 'Cliente 13', '13', 'link13'),
---     ('cliente14', 'Cliente 14', '14', 'link14'),
---     ('cliente15', 'Cliente 15', '15', 'link15'),
---     ('cliente16', 'Cliente 16', '16', 'link16'),
---     ('cliente17', 'Cliente 17', '17', 'link17'),
---     ('cliente18', 'Cliente 18', '18', 'link18'),
---     ('cliente19', 'Cliente 19', '19', 'link19'),
---     ('cliente20', 'Cliente 20', '20', 'link20'),
--- -- servicio
--- INSERT INTO
---     servicio(
---         `codigo`,
---         `descripcion`,
---         `bases`,
---         `moneda`,
---         `monto`,
---         `fecha`,
---         `link`,
---         `idCliente`
---     )
--- VALUES
---     ('serv', 'desc', 'http://silfersystem.com/', 'S', '00', '', '', ''),
+INSERT INTO
+    cliente(`codigo`, `nombre`, `ruc`, `link`)
+VALUES
+    ('cliente1', 'Cliente 1', '1', 'link1'),
+    ('cliente2', 'Cliente 2', '2', 'link2'),
+    ('cliente3', 'Cliente 3', '3', 'link3'),
+    ('cliente4', 'Cliente 4', '4', 'link4'),
+    ('cliente5', 'Cliente 5', '5', 'link5'),
+    ('cliente6', 'Cliente 6', '6', 'link6'),
+    ('cliente7', 'Cliente 7', '7', 'link7'),
+    ('cliente8', 'Cliente 8', '8', 'link8'),
+    ('cliente9', 'Cliente 9', '9', 'link9'),
+    ('cliente10', 'Cliente 10', '10', 'link10'),
+    ('cliente11', 'Cliente 11', '11', 'link11'),
+    ('cliente12', 'Cliente 12', '12', 'link12'),
+    ('cliente13', 'Cliente 13', '13', 'link13'),
+    ('cliente14', 'Cliente 14', '14', 'link14'),
+    ('cliente15', 'Cliente 15', '15', 'link15'),
+    ('cliente16', 'Cliente 16', '16', 'link16'),
+    ('cliente17', 'Cliente 17', '17', 'link17'),
+    ('cliente18', 'Cliente 18', '18', 'link18'),
+    ('cliente19', 'Cliente 19', '19', 'link19'),
+    ('cliente20', 'Cliente 20', '20', 'link20'),
+    -- servicio
+INSERT INTO
+    servicio(
+        `codigo`,
+        `descripcion`,
+        `bases`,
+        `moneda`,
+        `monto`,
+        `fecha`,
+        `link`,
+        `idCliente`
+    )
+VALUES
+    (
+        'serv',
+        'desc',
+        'http://silfersystem.com/',
+        'S',
+        '00',
+        '',
+        '',
+        ''
+    );
+
+-- 
 -- cliente
 INSERT INTO
     cliente (codigo, nombre, ruc, link)
@@ -121,7 +125,7 @@ INSERT INTO
         idServicio
     )
 VALUES
-    ();
+    ('0000100', '2022-08-22', '0000002733', '', '1');
 
 -- s_contrato
 INSERT INTO
@@ -132,7 +136,7 @@ INSERT INTO
         idServicio
     )
 VALUES
-    ();
+    ('0015-2022', '2022-07-26', '', '1');
 
 -- s_entregable
 INSERT INTO
@@ -146,13 +150,31 @@ INSERT INTO
         idServicio
     )
 VALUES
-    ();
+    (
+        '1',
+        '',
+        '',
+        '60',
+        '30 días calendarios',
+        '',
+        '1'
+    ),
+    (
+        '2',
+        '',
+        '',
+        '40',
+        '120 días calendarios',
+        '',
+        '1'
+    );
 
 -- s_conformidad
 INSERT INTO
     s_conformidad(fecha, link, idEntregable)
 VALUES
-    ();
+    ('2022-08-18', '', '1'),
+    ('2022-09-26', '', '2');
 
 -- s_factura
 INSERT INTO
@@ -161,17 +183,35 @@ INSERT INTO
         moneda,
         monto,
         fec_emision,
-        fec_deposito,
-        monto_abonado,
+        detraccion,
         fec_detraccion,
         link,
         idConformidad
     )
 VALUES
-    ();
+    (
+        'F001-00000040',
+        'S',
+        '135600',
+        '2022-08-18',
+        '',
+        '',
+        '',
+        '1'
+    ),
+    (
+        'F001-00000047',
+        'S',
+        '90400',
+        '2022-09-26',
+        '',
+        '',
+        '',
+        '1'
+    );
 
 -- s_deposito
-INSERT INTO
-    s_deposito(moneda, monto, fecha, link, idFactura)
-VALUES
-    ();
+-- INSERT INTO
+--     s_deposito(moneda, monto, fecha, link, idFactura)
+-- VALUES
+--     ();

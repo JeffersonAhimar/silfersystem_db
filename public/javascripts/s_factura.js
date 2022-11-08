@@ -68,19 +68,11 @@ $(function () {
                     className: 'py-0 px-1'
                 },
                 {
-                    data: 'fec_deposito',
-                    className: 'py-0 px-1'
-                },
-                {
-                    data: 'monto_abonado',
+                    data: 'detraccion',
                     className: 'py-0 px-1'
                 },
                 {
                     data: 'fec_detraccion',
-                    className: 'py-0 px-1'
-                },
-                {
-                    data: 'detraccion',
                     className: 'py-0 px-1'
                 },
                 {
