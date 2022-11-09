@@ -36,6 +36,7 @@
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.bootstrap5.min.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.html5.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Buttons-2.2.3/js/buttons.print.min.js"></script> -->
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/Responsive-2.3.0/js/responsive.bootstrap5.js"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>public/plugins/DataTables/SearchPanes-2.0.2/js/dataTables.searchPanes.min.js"></script>

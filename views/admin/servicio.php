@@ -35,8 +35,8 @@
             <thead>
                 <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th class="px-1 py-1 text-center" width="3%">id</th>
-                    <th class="px-1 py-1 text-center">código</th>
-                    <th class="px-1 py-1 text-center">descripción</th>
+                    <th class="px-1 py-1 text-center" width="5%">código</th>
+                    <th class="px-1 py-1 text-center" width="10%">descripción</th>
                     <th class="px-1 py-1 text-center" width="2%">bases</th>
                     <th class="px-1 py-1 text-center" width="2%">moneda</th>
                     <th class="px-1 py-1 text-center">monto</th>

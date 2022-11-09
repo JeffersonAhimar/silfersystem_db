@@ -81,6 +81,18 @@ switch ($op) {
                 while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                     $row['no'] = $i++;
                     $row['fecha'] = date("F d, Y", strtotime($row['fecha']));
+                    // 
+                    $n = strlen($row['descripcion']);
+                    if ($n > 40) {
+                        $half = $n / 2;
+                        while (substr($row['descripcion'], $half, 1) != ' ') {
+                            $half += 1;
+                        }
+                        $row['descripcion'] = substr($row['descripcion'], 0, $half) . '<br>' . substr($row['descripcion'], $half);
+                    } else {
+                        $row['descripcion'] = $row['descripcion'];
+                    }
+                    // 
                     $data[] = $row;
                 }
                 // DEVOLVIENDO DATA
