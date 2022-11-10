@@ -13,7 +13,7 @@
 </head>
 
 <script>
-    function goResumen() {
+    function goResumenServicios() {
         window.open('resumen_servicios.php', '_self');
     }
 </script>
@@ -22,8 +22,9 @@
 <body>
     <center>
         <br>
-        <input type="button" value="Resumen" onclick="goResumen()">
+        <input type="button" value="Resumen Servicios" onclick="goResumenServicios()">
         <br><br>
+
     </center>
 
 

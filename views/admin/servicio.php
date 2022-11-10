@@ -115,7 +115,9 @@
                         </div>
                         <div class="mb-2">
                             <label for="idCliente" class="control-label">idCliente</label>
-                            <input type="text" class="form-control rounded-0" id="idCliente" name="idCliente">
+                            <select class="form-control rounded-0" id="idCliente" name="idCliente">
+                                <!-- OPTIONS -->
+                            </select>
                         </div>
                         <!-- /CAMPOS -->
                     </form>
@@ -177,7 +179,9 @@
                         </div>
                         <div class="mb-2">
                             <label for="idCliente" class="control-label">idCliente</label>
-                            <input type="text" class="form-control rounded-0" id="idCliente" name="idCliente">
+                            <select class="form-control rounded-0" id="idCliente" name="idCliente">
+                                <!-- OPTIONS -->
+                            </select>
                         </div>
                         <!-- /CAMPOS -->
                     </form>

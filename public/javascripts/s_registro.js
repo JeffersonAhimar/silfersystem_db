@@ -11,6 +11,7 @@ $(function () {
         if ($.fn.dataTable.isDataTable('#tblData') && tblData != '') {
             tblData.draw(true)
         } else {
+            load_options_cliente();
             load_data();
         }
     }
@@ -171,7 +172,24 @@ $(function () {
         });
     }
 
+
+    // LOAD_OPTIONS_SERVICIO
+    function load_options_servicio() {
+        $.ajax({
+            url: "../../controllers/servicioController.php",
+            type: TYPE,
+            data: {
+                op: '6'
+            },
+            success: function (resp) {
+                $("#add_modal #idServicio").html(resp);
+                $("#edit_modal #idServicio").html(resp);
+            }
+        });
+    }
+
     // READ DATA
+    load_options_servicio();
     load_data()
 
 

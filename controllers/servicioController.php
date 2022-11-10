@@ -160,5 +160,20 @@ switch ($op) {
             } catch (Exception $ex) {
                 // error
             }
+            break;
+        }
+
+        // GET_ALL
+    case 6: {
+            $db = new Database();
+            $con = $db->conectar();
+            $query = $con->prepare("SELECT * FROM $tblName");
+            $query->execute();
+            $rowData = '';
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $rowData .= '<option value="' . $row['idServicio'] . '">' . $row['idServicio'] . ' - ' . $row['codigo'] . '</option>';
+            }
+            echo $rowData;
+            break;
         }
 }

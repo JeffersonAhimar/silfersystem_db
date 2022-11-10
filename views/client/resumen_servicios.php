@@ -122,7 +122,7 @@
     <center>
         <h1><?php echo $titleTable ?></h1>
         <input type="button" value="Atras" onclick="historyBack()">
-        <input type="button" value="Home - Admin" onclick="irHomeAdmin()">
+        <input type="button" value="Home - Client" onclick="irHomeClient()">
 
         <br><br>
 

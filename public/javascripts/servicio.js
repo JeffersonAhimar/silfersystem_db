@@ -11,6 +11,7 @@ $(function () {
         if ($.fn.dataTable.isDataTable('#tblData') && tblData != '') {
             tblData.draw(true)
         } else {
+            load_options_cliente();
             load_data();
         }
     }
@@ -129,7 +130,7 @@ $(function () {
                         type: TYPE,
                         data: {
                             op: '5',
-                            idServicio: $(this).attr('data-id')
+                            idServicio: $(this).attr('data-id'),
                         },
                         dataType: 'json',
                         error: err => {
@@ -206,7 +207,24 @@ $(function () {
         });
     }
 
+    // LOAD_OPTIONS_CLIENTE
+    function load_options_cliente() {
+        $.ajax({
+            url: "../../controllers/clienteController.php",
+            type: TYPE,
+            data: {
+                op: '6'
+            },
+            success: function (resp) {
+                $("#add_modal #idCliente").html(resp);
+                $("#edit_modal #idCliente").html(resp);
+            }
+        });
+    }
+
+
     // READ DATA
+    load_options_cliente();
     load_data()
 
     // CREATE DATA
